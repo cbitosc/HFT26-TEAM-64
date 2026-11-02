@@ -1,0 +1,168 @@
+/* SOLICE intro overlay */
+
+.solice-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #000;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 1.1s ease;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #e6ebf5;
+  user-select: none;
+}
+.solice-intro.is-fading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.solice-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.solice-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+/* ---- location tags ---- */
+.solice-caption {
+  position: absolute;
+  left: clamp(24px, 5vw, 72px);
+  bottom: clamp(28px, 8vh, 80px);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  filter: blur(3px);
+  transition: opacity 0.9s ease, transform 0.9s ease, filter 0.9s ease;
+}
+.solice-caption.is-on {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.solice-caption-line {
+  display: block;
+  width: 36px;
+  height: 1px;
+  margin-bottom: 14px;
+  background: linear-gradient(90deg, rgba(200, 214, 255, 0.9), rgba(200, 214, 255, 0));
+}
+.solice-caption-title {
+  font-family: "Michroma", "Inter", sans-serif;
+  font-size: clamp(13px, 1.25vw, 17px);
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: #f2f5fb;
+}
+.solice-caption-sub {
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: rgba(198, 208, 230, 0.62);
+}
+
+/* ---- title ---- */
+.solice-title {
+  position: absolute;
+  top: 9vh;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  transition: opacity 0.7s ease, transform 0.9s ease;
+}
+.solice-title:not(.is-on) { opacity: 0; }
+.solice-tagline {
+  margin-top: clamp(4px, 1.4vh, 16px);
+  font-family: "Michroma", "Inter", sans-serif;
+  font-size: clamp(10px, 1vw, 13px);
+  letter-spacing: 0.55em;
+  padding-left: 0.55em;
+  text-transform: uppercase;
+  color: rgba(222, 230, 245, 0.78);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 1.4s ease, transform 1.4s ease;
+}
+.solice-tagline.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- enter button: thin glass pill ---- */
+.solice-enter {
+  position: absolute;
+  left: 50%;
+  bottom: 9vh;
+  transform: translate(-50%, 10px);
+  opacity: 0;
+  pointer-events: none;
+  padding: 15px 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(206, 218, 255, 0.38);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #f3f6ff;
+  font-family: "Michroma", "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(140, 170, 255, 0);
+  transition: opacity 1s ease, transform 1s ease, border-color 0.3s ease, box-shadow 0.4s ease, background 0.3s ease;
+}
+.solice-enter span { padding-left: 0.38em; }
+.solice-enter.is-on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+.solice-enter.is-on:active { transform: translate(-50%, 0) scale(0.98); }
+.solice-enter:hover {
+  border-color: rgba(226, 234, 255, 0.85);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 32px rgba(140, 170, 255, 0.28);
+  filter: none;
+}
+.solice-enter:focus-visible {
+  outline: 1px solid rgba(226, 234, 255, 0.9);
+  outline-offset: 4px;
+}
+
+.solice-skip {
+  position: absolute;
+  top: 22px;
+  right: 26px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(200, 210, 235, 0.22);
+  background: transparent;
+  color: rgba(214, 222, 240, 0.6);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.solice-skip:hover {
+  color: #fff;
+  border-color: rgba(220, 228, 250, 0.6);
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solice-caption { transition: none; }
+}
